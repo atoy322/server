@@ -1,10 +1,12 @@
 package main
 
 import (
-    "fmt"
-    "net/http"
-    "os"
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
 )
+
 
 type MyHandler struct {
     Count int
@@ -17,6 +19,18 @@ func IsExists(name string) bool {
     } else {
         return false
     }
+}
+
+func MimeType(name string) string {
+    mimetypes := map[string]string{
+        "html": "text/html",
+        "css": "text/css",
+        "txt": "text/plain",
+    }
+    s := strings.Split(name, ".")
+    ext := s[len(s)-1]
+    
+    return mimetypes[ext]
 }
 
 func TransportFile(w http.ResponseWriter, name string) error {
@@ -47,6 +61,10 @@ func (h *MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
     exists := IsExists(name)
     if exists {
+        mtype := MimeType(name)
+        if mtype != "" {
+            w.Header().Add("Content-Type", mtype)
+        }
         w.WriteHeader(200)
         TransportFile(w, name)
         fmt.Printf("%3d: [OK] %s\n", h.Count, name)
