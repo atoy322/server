@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Simple Http Server</title>
+        <style>
+            #screen {
+                width: 100%;
+            }
+        </style>
+        <link rel="stylesheet" href="./html_dracula.css">
+        <script>
+            function onload() {
+                var screen = document.getElementById("screen");
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "./main.go.html", true);
+                xhr.send(null);
+                xhr.onload = () => {
+                    screen.innerHTML = xhr.responseText;
+                }
+            }
+        </script>
+    </head>
+
+    <body onload="onload();">
+        <div id="screen"></div>
+    </body>
+</html>
