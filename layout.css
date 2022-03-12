@@ -1,7 +1,17 @@
+html {
+    width: 100%;
+}
+
 body {
+    width: 100%;
     background-color: #333333;
 }
 
 .highlighttable {
     font-size: 1.2em;
+}
+
+.highlight {
+    width: 50%;
+    overflow-x: scroll;
 }
