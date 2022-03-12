@@ -1,17 +1,37 @@
-html {
-    width: 100%;
+@font-face {
+    font-family: clematis;
+    src: url(./clematis-regular.ttf);
 }
 
 body {
-    width: 100%;
-    background-color: #333333;
+    background-color: darkslategray;
 }
 
 .highlighttable {
-    font-size: 1.2em;
+    width: 100%;
+    font-size: 24px;
+    table-layout: fixed;
+}
+
+td.linenos {
+    width: 35px;
+}
+
+td.code {
+    width: auto;
 }
 
 .highlight {
-    width: 50%;
     overflow-x: scroll;
+}
+
+.msg {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: gray;
+    background-color: white;
+    border-radius: 7px;
+    text-align: center;
+    width: 100%;
+    font-family: clematis;
 }
